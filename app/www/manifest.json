@@ -1,0 +1,26 @@
+{
+  "name": "HELFER",
+  "short_name": "HELFER",
+  "description": "A voice-first companion that talks with you, calls your family, and reminds you to take your pills.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fefaf3",
+  "theme_color": "#0b3d91",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

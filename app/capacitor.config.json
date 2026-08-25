@@ -1,0 +1,13 @@
+{
+  "appId": "com.cultamu.helfer",
+  "appName": "HELFER",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "url": "https://www.cultamu.com/helper/",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

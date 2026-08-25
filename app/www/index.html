@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>HELFER</title>
+  <meta name="description" content="A voice-first companion for retired people: talk, call family, and get pill reminders." />
+  <meta name="theme-color" content="#0b3d91" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4579507740863817" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1>HELFER</h1>
+      <button id="settings-shortcut" class="icon-button" aria-label="Open settings">⚙️</button>
+    </header>
+
+    <main id="view-home" class="view active" aria-live="polite">
+      <p class="home-status" id="home-status">Tap the big button and speak</p>
+
+      <div class="mic-wrap">
+        <button id="mic-button" aria-label="Tap and speak to Helfer">🎙️</button>
+      </div>
+
+      <div class="transcript">
+        <p class="you-said" id="you-said"></p>
+        <p class="helper-said" id="helper-said">Hello! I'm here whenever you want to talk, call someone, or ask about your pills.</p>
+      </div>
+
+      <div class="secondary-actions">
+        <button id="repeat-button" class="pill-button">🔊 Say it again</button>
+        <button id="help-button" class="pill-button">❓ What can you do?</button>
+      </div>
+
+      <button id="emergency-call-button" class="emergency-call" hidden>📞 Call <span id="emergency-name"></span></button>
+    </main>
+
+    <main id="view-contacts" class="view" aria-live="polite">
+      <h2>Your Contacts</h2>
+      <p class="hint">Say "Call" and then the person's name, or tap the phone icon below.</p>
+      <div id="contacts-list" class="stack-gap"></div>
+
+      <fieldset>
+        <legend>Add a contact</legend>
+        <label for="contact-name">Name</label>
+        <input id="contact-name" type="text" autocomplete="off" placeholder="e.g. Mary" />
+        <label for="contact-phone">Phone number</label>
+        <input id="contact-phone" type="tel" autocomplete="off" placeholder="e.g. 555-123-4567" />
+        <div class="switch-row">
+          <label for="contact-emergency" style="margin:0;">Make this my main "Call for Help" contact</label>
+          <input id="contact-emergency" type="checkbox" />
+        </div>
+        <button id="add-contact-button" class="big-button">Add Contact</button>
+      </fieldset>
+    </main>
+
+    <main id="view-medications" class="view" aria-live="polite">
+      <h2>Your Pills</h2>
+      <p class="hint">Helfer will remind you out loud at each time you set below.</p>
+      <div id="medications-list" class="stack-gap"></div>
+
+      <fieldset>
+        <legend>Add a pill reminder</legend>
+        <label for="med-name">Pill name</label>
+        <input id="med-name" type="text" autocomplete="off" placeholder="e.g. Heart pill" />
+        <label for="med-time">Add a time</label>
+        <input id="med-time" type="time" />
+        <button id="add-med-time-button" class="pill-button" type="button">+ Add this time</button>
+        <div id="med-time-chips" class="time-chip-row"></div>
+        <button id="add-med-button" class="big-button">Save Pill Reminder</button>
+      </fieldset>
+    </main>
+
+    <main id="view-settings" class="view" aria-live="polite">
+      <h2>Settings</h2>
+
+      <fieldset id="install-app-box">
+        <legend>Get the HELFER App</legend>
+        <p class="hint">For the best experience (and pill reminders that work even when the app is closed), install the HELFER app on this phone.</p>
+        <a id="download-app-link" class="big-button" href="./download" style="text-decoration:none; display:block; text-align:center;">⬇️ Download the App</a>
+      </fieldset>
+
+      <fieldset>
+        <legend>Permissions</legend>
+        <p class="hint">Helfer needs permission to listen to your voice and to send you pill reminders. Your phone will ask you to confirm.</p>
+        <div id="permission-status" class="status-banner warn">Permissions not set up yet</div>
+        <button id="enable-permissions-button" class="big-button secondary">Turn On Voice &amp; Reminders</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Voice</legend>
+        <label for="speech-rate">Speaking speed</label>
+        <select id="speech-rate">
+          <option value="0.75">Slower</option>
+          <option value="0.9" selected>Normal</option>
+          <option value="1.1">Faster</option>
+        </select>
+        <label for="speech-lang">Language</label>
+        <select id="speech-lang">
+          <option value="en-US">English (US)</option>
+          <option value="en-GB">English (UK)</option>
+          <option value="es-ES">Español</option>
+          <option value="fr-FR">Français</option>
+          <option value="de-DE">Deutsch</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Type instead of speaking</legend>
+        <p class="hint">If voice isn't available on this device, you can type here instead.</p>
+        <label for="fallback-text">Message</label>
+        <input id="fallback-text" type="text" placeholder="Type your message here" />
+        <button id="fallback-send" class="big-button">Send</button>
+      </fieldset>
+
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4579507740863817"
+             data-ad-slot="6715686540"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-view="home"><span class="nav-icon">🏠</span>Home</button>
+      <button class="nav-item" data-view="contacts"><span class="nav-icon">📞</span>Contacts</button>
+      <button class="nav-item" data-view="medications"><span class="nav-icon">💊</span>Pills</button>
+      <button class="nav-item" data-view="settings"><span class="nav-icon">⚙️</span>Settings</button>
+    </nav>
+  </div>
+
+  <div id="reminder-overlay" class="overlay" hidden role="alertdialog" aria-labelledby="reminder-title">
+    <div class="overlay-card">
+      <div class="pill-emoji">💊</div>
+      <h2 id="reminder-title">Time for your pill</h2>
+      <p id="reminder-text"></p>
+      <div class="overlay-actions">
+        <button id="reminder-taken" class="big-button secondary">✅ I took it</button>
+        <button id="reminder-snooze" class="big-button">⏰ Remind me in 10 minutes</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
