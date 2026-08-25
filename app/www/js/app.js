@@ -79,6 +79,8 @@ const el = {
   installAppBox: document.getElementById('install-app-box'),
   permissionStatus: document.getElementById('permission-status'),
   enablePermissionsButton: document.getElementById('enable-permissions-button'),
+  homeEnablePermissionsButton: document.getElementById('home-enable-permissions-button'),
+  homeDownloadAppLink: document.getElementById('home-download-app-link'),
   speechRateSelect: document.getElementById('speech-rate'),
   speechLangSelect: document.getElementById('speech-lang'),
   fallbackText: document.getElementById('fallback-text'),
@@ -460,7 +462,7 @@ el.speechLangSelect.addEventListener('change', () => {
   if (recognizer) recognizer.lang = state.settings.lang;
 });
 
-el.enablePermissionsButton.addEventListener('click', async () => {
+async function handleEnablePermissions() {
   const voiceOk = await requestVoicePermissions();
   const remindersOk = await requestReminderPermissions();
   if (voiceOk && remindersOk) {
@@ -469,7 +471,17 @@ el.enablePermissionsButton.addEventListener('click', async () => {
     say('Some permissions were not turned on. You can allow them from your phone\'s app settings.');
   }
   updatePermissionStatus();
-});
+}
+
+el.enablePermissionsButton.addEventListener('click', handleEnablePermissions);
+el.homeEnablePermissionsButton.addEventListener('click', handleEnablePermissions);
+
+function updateHomeInstallLinks() {
+  if (isNative()) {
+    el.homeDownloadAppLink.hidden = true;
+    el.homeEnablePermissionsButton.textContent = '🔔 Voice & Reminders are on';
+  }
+}
 
 function escapeHtml(str) {
   const div = document.createElement('div');
@@ -488,6 +500,7 @@ if ('serviceWorker' in navigator && !isNative()) {
 
 // --- Init ---
 refreshEmergencyButton();
+updateHomeInstallLinks();
 wireNativeReminderListeners();
 registerReminderActions();
 syncNativeReminders();
